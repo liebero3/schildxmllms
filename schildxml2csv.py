@@ -159,7 +159,8 @@ if __name__ == "__main__":
     print(args['input_xml_file'])
     tree = ET.parse(args['input_xml_file'])
     root = tree.getroot()
-    engine = create_engine('sqlite:///schild_dummy.db')
+    engine = create_engine(
+        f"sqlite:///{args['input_xml_file'].strip('.xml')}.db")
     Session = sessionmaker(bind=engine)
     session = Session()
     Base.metadata.create_all(engine)
