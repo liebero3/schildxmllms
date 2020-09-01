@@ -15,3 +15,7 @@ schildxml2csv.py -i schild.xml -o lms.csv
 # Wichtig!
 
 ICH ÜBERNEHME KEINE VERANTWORTUNG, es handelt sich um ein "proof of concept"
+
+# License:
+
+Keine, tu was immer du willst damit.

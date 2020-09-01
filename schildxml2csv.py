@@ -63,12 +63,16 @@ class Membership(Base):
 
 
 def readusers():
-    for elem in root.findall(".//{http://www.metaventis.com/ns/cockpit/sync/1.0}person"):
-        for child in elem.findall(".//{http://www.metaventis.com/ns/cockpit/sync/1.0}id"):
+    for elem in root.findall(
+            ".//{http://www.metaventis.com/ns/cockpit/sync/1.0}person"):
+        for child in elem.findall(
+                ".//{http://www.metaventis.com/ns/cockpit/sync/1.0}id"):
             lehrerid = child.text
-        for child in elem.findall(".//{http://www.metaventis.com/ns/cockpit/sync/1.0}family"):
+        for child in elem.findall(
+                ".//{http://www.metaventis.com/ns/cockpit/sync/1.0}family"):
             name = child.text
-        for child in elem.findall(".//{http://www.metaventis.com/ns/cockpit/sync/1.0}given"):
+        for child in elem.findall(
+                ".//{http://www.metaventis.com/ns/cockpit/sync/1.0}given"):
             given = child.text
         for child in elem.findall(".//{http://www.metaventis.com/ns/cockpit/sync/1.0}institutionrole"):
             institutionrole = child.get('institutionroletype')
@@ -81,7 +85,8 @@ def readusers():
 
 def readgroups():
     parent = ''
-    for elem in root.findall(".//{http://www.metaventis.com/ns/cockpit/sync/1.0}group"):
+    for elem in root.findall(
+            ".//{http://www.metaventis.com/ns/cockpit/sync/1.0}group"):
         for child in elem.findall("{http://www.metaventis.com/ns/cockpit/sync/1.0}sourcedid/{http://www.metaventis.com/ns/cockpit/sync/1.0}id"):
             groupid = child.text
         # use short or long as course info
@@ -99,7 +104,8 @@ def readgroups():
 def readmemberships():
     i = 0
 
-    for elem in root.findall(".//{http://www.metaventis.com/ns/cockpit/sync/1.0}membership"):
+    for elem in root.findall(
+            ".//{http://www.metaventis.com/ns/cockpit/sync/1.0}membership"):
 
         for child in elem.findall("{http://www.metaventis.com/ns/cockpit/sync/1.0}sourcedid/{http://www.metaventis.com/ns/cockpit/sync/1.0}id"):
             groupid = child.text
@@ -125,7 +131,9 @@ def readfile():
 
 def returnCoursesOfStudent(studentid):
     courseslist = []
-    for group, in session.query(Membership.groupid).filter(Membership.nameid == studentid):
+    for group, in session.query(
+            Membership.groupid).filter(
+            Membership.nameid == studentid):
         groupname, = session.query(Group.name).filter(Group.groupid == group)
         courseslist.append(groupname[0])
     courses = "|".join(courseslist)
@@ -146,7 +154,11 @@ def returnUsername(studentid):
     last, = session.query(User.name).filter(User.lehrerid == studentid)
     given, = session.query(User.given).filter(User.lehrerid == studentid)
     username = given[0] + "." + last[0]
-    return username.lower().replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("ß", "ss")
+    return username.lower().replace(
+        "ü", "ue").replace(
+        "ä", "ae").replace(
+        "ö", "oe").replace(
+        "ß", "ss")
 
 
 if __name__ == "__main__":
@@ -166,11 +178,15 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     readfile()
     # returnCoursesOfStudent('ID-123456-3417')
-    with open(args['output_csv_file'], 'w', newline='') as csvfile:
+    with open(args['output_csv_file'], 'w', encoding="utf-8", newline='') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=',',
                                 quoting=csv.QUOTE_MINIMAL)
-        spamwriter.writerow(["idnumber"] + ["username"] + ["firstname"] +
-                            ["lastname"] + ["profile_field_Klasse"] + ["password"] + ["email"])
+        spamwriter.writerow(
+            ["idnumber"] + ["username"] + ["firstname"] + ["lastname"] +
+            ["profile_field_Klasse"] + ["password"] + ["email"])
         for userid, in session.query(User.lehrerid):
-            spamwriter.writerow([f"{userid}"] + [returnUsername(userid)] + [returnGivenname(userid)] +
-                                [returnLastname(userid)] + [returnCoursesOfStudent(userid)] + ["abc"] + [f"{userid}@example.com"])
+            spamwriter.writerow(
+                [f"{userid}"] + [returnUsername(userid)] +
+                [returnGivenname(userid)] + [returnLastname(userid)] +
+                [returnCoursesOfStudent(userid)] + ["abc"] +
+                [f"{userid}@example.com"])
