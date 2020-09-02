@@ -6,11 +6,35 @@ Die mithilfe der CSV erstellten User werden automatisch globalen Gruppen innerha
 
 Auf diesem Weg lassen sich (die richtigen Einstellungen innerhalb Logineo-LMS vorausgesetzt) auch Gruppenzugehörigkeiten mithilfe der CSV ändern, dies ist bei normalen Moodleinstallationen nicht möglich (Feature von Eledia-Instanzen).
 
-# Installation
+# Installation und Ausführung
 
+dependencies installieren
+
+```
 pip install -r requirements.txt
+```
 
-schildxml2csv.py -i schild.xml -o lms.csv
+script ausführen
+
+```
+schildxml2csv.py -i <schild.xml> -o <lms.csv>
+```
+
+# Vorgehen innerhalb von Logineo LMS
+
+Einstellungen des Eledia-Blocks "globale Gruppen" anpassen
+
+![Block: globale Gruppen](https://github.com/liebero3/schildxmllms/tree/master/images/globale-gruppen.png)
+
+Obige Seite erreicht man Über
+
+![Pfad zu globale Gruppen](https://github.com/liebero3/schildxmllms/tree/master/images/path_gl-gruppen.png)
+
+Über Website-Administration / Nutzer / Nutzerkonten / Nutzerliste hochladen die mit dem script erstellte csv hochladen.
+
+Beim Hochladen müssen müssen folgende Einstellungen vorgenommen werden:
+
+![Einstellungen Upload](https://github.com/liebero3/schildxmllms/tree/master/images/upload_einstellungen.png)
 
 # Wichtig!
 
