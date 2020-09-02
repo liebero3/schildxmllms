@@ -1,6 +1,6 @@
 # Wofür ist das gut?
 
-Mithilfe des scripts lässt sich eine CSV für Logineo-LMS aus dem Logineo-XML-Export des Programms Schild erzeugen.
+Mithilfe des Scripts lässt sich eine CSV für Logineo-LMS aus dem Logineo-XML-Export des Programms Schild erzeugen.
 
 Die mithilfe der CSV erstellten User werden automatisch globalen Gruppen innerhalb von Logineo-LMS zugeordnet, die den Kurszugehörigkeiten in Schild entsprechen.
 
