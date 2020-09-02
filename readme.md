@@ -8,13 +8,13 @@ Auf diesem Weg lassen sich (die richtigen Einstellungen innerhalb Logineo-LMS vo
 
 # Installation und Ausführung
 
-dependencies installieren
+Dependencies installieren
 
 ```
 pip install -r requirements.txt
 ```
 
-script ausführen
+Script ausführen
 
 ```
 schildxml2csv.py -i <schild.xml> -o <lms.csv>
@@ -26,11 +26,11 @@ Einstellungen des Eledia-Blocks "globale Gruppen" anpassen
 
 ![Block: globale Gruppen](https://github.com/liebero3/schildxmllms/blob/master/images/globale-gruppen.png)
 
-Obige Seite erreicht man Über
+Obige Seite erreicht man über
 
 ![Pfad zu globale Gruppen](https://github.com/liebero3/schildxmllms/blob/master/images/path_gl-gruppen.png)
 
-Über Website-Administration / Nutzer / Nutzerkonten / Nutzerliste hochladen die mit dem script erstellte csv hochladen.
+Über "Website-Administration / Nutzer / Nutzerkonten / Nutzerliste hochladen" die mit dem Script erstellte CSV hochladen.
 
 Beim Hochladen müssen müssen folgende Einstellungen vorgenommen werden:
 
