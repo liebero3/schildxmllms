@@ -24,17 +24,17 @@ schildxml2csv.py -i <schild.xml> -o <lms.csv>
 
 Einstellungen des Eledia-Blocks "globale Gruppen" anpassen
 
-![Block: globale Gruppen](https://github.com/liebero3/schildxmllms/tree/master/images/globale-gruppen.png)
+![Block: globale Gruppen](https://github.com/liebero3/schildxmllms/blob/master/images/globale-gruppen.png)
 
 Obige Seite erreicht man Über
 
-![Pfad zu globale Gruppen](https://github.com/liebero3/schildxmllms/tree/master/images/path_gl-gruppen.png)
+![Pfad zu globale Gruppen](https://github.com/liebero3/schildxmllms/blob/master/images/path_gl-gruppen.png)
 
 Über Website-Administration / Nutzer / Nutzerkonten / Nutzerliste hochladen die mit dem script erstellte csv hochladen.
 
 Beim Hochladen müssen müssen folgende Einstellungen vorgenommen werden:
 
-![Einstellungen Upload](https://github.com/liebero3/schildxmllms/tree/master/images/upload_einstellungen.png)
+![Einstellungen Upload](https://github.com/liebero3/schildxmllms/blob/master/images/upload_einstellungen.png)
 
 # Wichtig!
 
