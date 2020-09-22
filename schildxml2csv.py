@@ -154,10 +154,22 @@ def returnUsername(studentid):
     last, = session.query(User.name).filter(User.lehrerid == studentid)
     given, = session.query(User.given).filter(User.lehrerid == studentid)
     username = given[0] + "." + last[0]
+
     return username.lower().replace(
         "ü", "ue").replace(
         "ä", "ae").replace(
         "ö", "oe").replace(
+        "á", "a").replace(
+        "à", "a").replace(
+        "é", "e").replace(
+        "è", "e").replace(
+        "ó", "o").replace(
+        "ò", "o").replace(
+        "â", "a").replace(
+        "ê", "e").replace(
+        "û", "u").replace(
+        "ë", "e").replace(
+        " ", "_").replace(
         "ß", "ss")
 
 
@@ -179,7 +191,7 @@ if __name__ == "__main__":
     readfile()
     # returnCoursesOfStudent('ID-123456-3417')
     with open(args['output_csv_file'], 'w', encoding="utf-8", newline='') as csvfile:
-        spamwriter = csv.writer(csvfile, delimiter=',',
+        spamwriter = csv.writer(csvfile, delimiter=';',
                                 quoting=csv.QUOTE_MINIMAL)
         spamwriter.writerow(
             ["idnumber"] + ["username"] + ["firstname"] + ["lastname"] +
