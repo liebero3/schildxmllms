@@ -197,6 +197,7 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     readfile()
     # returnCoursesOfStudent('ID-123456-3417')
+    # print("test")
     with open(args['output_csv_file'], 'w', encoding="utf-8", newline='') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=';',
                                 quoting=csv.QUOTE_MINIMAL)
