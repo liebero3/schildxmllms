@@ -160,7 +160,7 @@ def returnInstitutionrole(studentid):
 def returnUsername(studentid):
     last, = session.query(User.name).filter(User.lehrerid == studentid)
     given, = session.query(User.given).filter(User.lehrerid == studentid)
-    username = given[0] + "." + last[0]
+    username = given[0].split(" ")[0] + "." + last[0]
 
     return username.lower().replace(
         "ü", "ue").replace(
@@ -197,7 +197,6 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     readfile()
     # returnCoursesOfStudent('ID-123456-3417')
-    # print("test")
     with open(args['output_csv_file'], 'w', encoding="utf-8", newline='') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=';',
                                 quoting=csv.QUOTE_MINIMAL)
