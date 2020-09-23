@@ -176,7 +176,7 @@ def returnUsername(studentid):
         "ê", "e").replace(
         "û", "u").replace(
         "ë", "e").replace(
-        " ", "_").replace(
+        " ", "").replace(
         "ß", "ss")
 
 
