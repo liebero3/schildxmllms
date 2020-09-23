@@ -150,6 +150,13 @@ def returnGivenname(studentid):
     return(given[0])
 
 
+def returnInstitutionrole(studentid):
+    given, = session.query(
+        User.institutionrole).filter(
+        User.lehrerid == studentid)
+    return(given[0])
+
+
 def returnUsername(studentid):
     last, = session.query(User.name).filter(User.lehrerid == studentid)
     given, = session.query(User.given).filter(User.lehrerid == studentid)
@@ -195,10 +202,12 @@ if __name__ == "__main__":
                                 quoting=csv.QUOTE_MINIMAL)
         spamwriter.writerow(
             ["idnumber"] + ["username"] + ["firstname"] + ["lastname"] +
-            ["profile_field_Klasse"] + ["password"] + ["email"])
+            ["profile_field_Klasse"] + ["password"] + ["email"] +
+            ["profile_field_Lehrer_in"])
         for userid, in session.query(User.lehrerid):
             spamwriter.writerow(
                 [f"{userid}"] + [returnUsername(userid)] +
                 [returnGivenname(userid)] + [returnLastname(userid)] +
                 [returnCoursesOfStudent(userid)] + ["abc"] +
-                [f"{userid}@example.com"])
+                [f"{userid}@example.com"] +
+                [("0", "1")[returnInstitutionrole(userid) == "Faculty"]])
