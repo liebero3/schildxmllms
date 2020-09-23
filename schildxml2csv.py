@@ -177,7 +177,27 @@ def returnUsername(studentid):
         "û", "u").replace(
         "ë", "e").replace(
         " ", "").replace(
-        "ß", "ss")
+        "ß", "ss").replace(
+        "ï", "i").replace(
+        "ÿ", "y").replace(
+        "ã", "a").replace(
+        "å", "a").replace(
+        "æ", "ae").replace(
+        "ç", "c").replace(
+        "ì", "i").replace(
+        "í", "i").replace(
+        "î", "i").replace(
+        "ð", "d").replace(
+        "ñ", "n").replace(
+        "ô", "o").replace(
+        "õ", "o").replace(
+        "ø", "oe").replace(
+        "œ", "oe").replace(
+        "ù", "u").replace(
+        "ú", "u").replace(
+        "ý", "y").replace(
+        "š", "s").replace(
+        "č", "c")
 
 
 if __name__ == "__main__":
