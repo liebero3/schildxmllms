@@ -19,12 +19,14 @@ class User(Base):
     name = Column(String)
     given = Column(String)
     institutionrole = Column(String)
+    email = Column(String)
 
-    def __init__(self, lehrerid, name, given, institutionrole):
+    def __init__(self, lehrerid, name, given, institutionrole, email):
         self.lehrerid = lehrerid
         self.name = name
         self.given = given
         self.institutionrole = institutionrole
+        self.email = email
 
     def __repr__(self):  # optional
         return f'User {self.name}'
@@ -76,8 +78,11 @@ def readusers():
             given = child.text
         for child in elem.findall(".//{http://www.metaventis.com/ns/cockpit/sync/1.0}institutionrole"):
             institutionrole = child.get('institutionroletype')
-
-        user = User(lehrerid, name, given, institutionrole)
+        email = ""
+        for child in elem.findall(
+                ".//{http://www.metaventis.com/ns/cockpit/sync/1.0}email"):
+            email = child.text
+        user = User(lehrerid, name, given, institutionrole, email)
         session.add(user)
 
     session.commit()
@@ -151,10 +156,17 @@ def returnGivenname(studentid):
 
 
 def returnInstitutionrole(studentid):
-    given, = session.query(
+    institutionrole, = session.query(
         User.institutionrole).filter(
         User.lehrerid == studentid)
-    return(given[0])
+    return(institutionrole[0])
+
+
+def returnEmail(studentid):
+    email, = session.query(
+        User.email).filter(
+        User.lehrerid == studentid)
+    return(email[0])
 
 
 def returnPassword(studentid):
@@ -233,5 +245,5 @@ if __name__ == "__main__":
                 [f"{userid}"] + [returnUsername(userid)] +
                 [returnGivenname(userid)] + [returnLastname(userid)] +
                 [returnCoursesOfStudent(userid)] + [returnPassword(userid)] +
-                [f"{userid}@example.com"] +
+                [(f"{userid}@example.com", returnEmail(userid))[returnEmail(userid) != ""]] +
                 [("0", "1")[returnInstitutionrole(userid) == "Faculty"]])
