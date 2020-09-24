@@ -157,6 +157,10 @@ def returnInstitutionrole(studentid):
     return(given[0])
 
 
+def returnPassword(studentid):
+    return(studentid)
+
+
 def returnUsername(studentid):
     last, = session.query(User.name).filter(User.lehrerid == studentid)
     given, = session.query(User.given).filter(User.lehrerid == studentid)
@@ -228,6 +232,6 @@ if __name__ == "__main__":
             spamwriter.writerow(
                 [f"{userid}"] + [returnUsername(userid)] +
                 [returnGivenname(userid)] + [returnLastname(userid)] +
-                [returnCoursesOfStudent(userid)] + ["abc"] +
+                [returnCoursesOfStudent(userid)] + [returnPassword(userid)] +
                 [f"{userid}@example.com"] +
                 [("0", "1")[returnInstitutionrole(userid) == "Faculty"]])
